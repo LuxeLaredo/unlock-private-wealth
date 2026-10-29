@@ -88,7 +88,8 @@
 
       setStatus("Your Blueprint is ready. Taking you to the delivery page…", "success");
       window.setTimeout(() => {
-        window.location.assign(CONFIG.successPath);
+        const query = window.location.search || "";
+        window.location.assign(`${CONFIG.successPath}${query}`);
       }, 450);
     } catch (error) {
       console.error("Blueprint request failed", error);

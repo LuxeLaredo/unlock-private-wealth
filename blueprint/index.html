@@ -60,6 +60,9 @@
         <p class="eyebrow eyebrow--light">The Next Step</p>
         <h2>Use the Investor Readiness Checklist before evaluating a deal.</h2>
         <p>The Investor Readiness Checklist helps you assess liquidity, time horizon, risk tolerance, tax considerations, and the questions worth answering before moving toward a strategy conversation.</p>
+        <div class="delivery-actions">
+          <a id="readiness-link" class="delivery-button" href="../readiness/">Take the Investor Readiness Checklist</a>
+        </div>
       </div>
     </section>
   </main>
@@ -71,5 +74,11 @@
       <div><strong>Important Disclosure</strong><p>This material is for educational purposes only and does not constitute an offer to sell securities, a solicitation to buy securities, or tax, legal, or investment advice. Any investment opportunity will be made only through formal offering documents. Investors should consult their CPA, attorney, and financial advisor before making any investment decision. Past performance and projected returns do not guarantee future results.</p></div>
     </div>
   </footer>
+  <script>
+    (() => {
+      const link = document.querySelector('#readiness-link');
+      if (link && window.location.search) link.href = `../readiness/${window.location.search}`;
+    })();
+  </script>
 </body>
 </html>
