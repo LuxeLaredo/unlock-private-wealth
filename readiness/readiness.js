@@ -8,13 +8,16 @@
   const details = document.querySelector('#result-details');
   const primary = document.querySelector('#result-primary');
 
-  const denaliContactUrl = 'https://denaliequityinvestments.com/#contact';
+  const strategyCallUrl = '../strategy-call/';
   const blueprintUrl = '../blueprint/';
 
-  const preserveQuery = (url) => {
-    const query = window.location.search;
-    if (!query || !url.startsWith('../')) return url;
-    return `${url}${query}`;
+  const preserveQuery = (url, additions = {}) => {
+    const params = new URLSearchParams(window.location.search);
+    Object.entries(additions).forEach(([key, val]) => {
+      if (val) params.set(key, val);
+    });
+    const query = params.toString();
+    return query ? `${url}?${query}` : url;
   };
 
   const value = (data, key) => String(data.get(key) || '');
@@ -55,8 +58,8 @@
       title.textContent = 'A focused investor conversation may be useful now.';
       body.textContent = 'Your answers indicate that you understand the basic structure, illiquidity, downside risk, and time horizon well enough for a more specific conversation to be productive.';
       details.innerHTML = '<p><strong>Next:</strong> Use a Strategy Call to discuss fit, questions, and what you would need to understand before evaluating a specific opportunity.</p>';
-      primary.textContent = 'Explore a Strategy Call';
-      primary.href = denaliContactUrl;
+      primary.textContent = 'Schedule a Strategy Call';
+      primary.href = preserveQuery(strategyCallUrl, { readiness_route: route });
     } else if (route === 'manual_review') {
       title.textContent = 'Clarify one or two items before moving forward.';
       body.textContent = 'You have much of the framework in place, but one or more areas deserves a closer look before a strategy conversation becomes truly useful.';
@@ -68,7 +71,7 @@
       body.textContent = 'Private real estate can involve illiquidity and loss of capital. Based on your answers, more education or financial planning should come before a strategy conversation.';
       details.innerHTML = '<p>Start by reviewing the Blueprint again and resolving the questions around liquidity, loss capacity, time horizon, or expectations before considering a specific opportunity.</p>';
       primary.textContent = 'Revisit the Blueprint';
-      primary.href = preserveQuery(blueprintUrl);
+      primary.href = preserveQuery(blueprintUrl, { readiness_route: route });
     }
 
     result.hidden = false;
