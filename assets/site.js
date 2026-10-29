@@ -12,9 +12,7 @@
   const previewNotice = document.querySelector("#preview-notice");
 
   const isFilePreview = window.location.protocol === "file:";
-  if (isFilePreview) {
-    previewNotice?.classList.add("is-visible");
-  }
+  if (isFilePreview) previewNotice?.classList.add("is-visible");
 
   const setStatus = (message, type) => {
     if (!status) return;
@@ -23,8 +21,10 @@
     status.focus({ preventScroll: true });
   };
 
+  const params = new URLSearchParams(window.location.search);
+  const getUtm = (key) => String(params.get(key) || "").slice(0, 180);
+
   const sourceDetail = () => {
-    const params = new URLSearchParams(window.location.search);
     const parts = [];
     ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach((key) => {
       const value = params.get(key);
@@ -41,14 +41,10 @@
     return (parts.join(";") || "direct").slice(0, 1000);
   };
 
-  const sourceCategory = () => {
-    const params = new URLSearchParams(window.location.search);
-    return (params.get("utm_source") || "unlock_private_wealth").slice(0, 100);
-  };
+  const sourceCategory = () => (params.get("utm_source") || "unlock_private_wealth").slice(0, 100);
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-
     if (!form.reportValidity()) return;
 
     if (isFilePreview) {
@@ -57,6 +53,12 @@
     }
 
     const data = new FormData(form);
+    const turnstileToken = String(data.get("cf-turnstile-response") || "");
+    if (!turnstileToken) {
+      setStatus("Please complete the human verification and try again.", "error");
+      return;
+    }
+
     const payload = {
       first_name: String(data.get("first_name") || "").trim(),
       last_name: String(data.get("last_name") || "").trim(),
@@ -64,8 +66,15 @@
       source_category: sourceCategory(),
       source_detail: sourceDetail(),
       landing_url: window.location.href,
+      referrer_url: document.referrer || "",
+      utm_source: getUtm("utm_source"),
+      utm_medium: getUtm("utm_medium"),
+      utm_campaign: getUtm("utm_campaign"),
+      utm_content: getUtm("utm_content"),
+      utm_term: getUtm("utm_term"),
       market_intelligence_opt_in: data.get("market_intelligence_opt_in") === "on",
-      website: String(data.get("website") || "").trim()
+      website: String(data.get("website") || "").trim(),
+      turnstile_token: turnstileToken
     };
 
     button.disabled = true;
@@ -86,6 +95,14 @@
         throw new Error(result.error || "Request could not be completed.");
       }
 
+      sessionStorage.setItem("denali_lead", JSON.stringify({
+        first_name: payload.first_name,
+        last_name: payload.last_name,
+        email: payload.email,
+        source_category: payload.source_category,
+        source_detail: payload.source_detail
+      }));
+
       setStatus("Your Blueprint is ready. Taking you to the delivery page…", "success");
       window.setTimeout(() => {
         const query = window.location.search || "";
@@ -93,7 +110,8 @@
       }, 450);
     } catch (error) {
       console.error("Blueprint request failed", error);
-      setStatus("We couldn't complete the request. Please check your connection and try again. If the problem continues, visit Denali Equity Investments and contact us directly.", "error");
+      setStatus(error?.message || "We couldn't complete the request. Please try again.", "error");
+      window.turnstile?.reset?.();
       button.disabled = false;
       button.textContent = "Get the Private Wealth Blueprint";
     }

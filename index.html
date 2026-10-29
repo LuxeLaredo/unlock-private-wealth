@@ -12,6 +12,8 @@
   <meta property="og:description" content="A practical framework for disciplined, tax-aware ownership of professionally managed multifamily real estate.">
   <meta property="og:url" content="https://unlockmyprivatewealth.com/">
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/security.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -79,6 +81,10 @@
               <input id="market-intelligence" name="market_intelligence_opt_in" type="checkbox">
               <span>Also send me Denali's Weekly Market Intelligence. This is optional and separate from delivery of the Blueprint.</span>
             </label>
+
+            <div class="turnstile-wrap">
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAAFqotZP8ksY52192" data-action="blueprint_request" data-theme="light" data-size="flexible" data-appearance="interaction-only"></div>
+            </div>
 
             <button class="primary-button" type="submit">Get the Private Wealth Blueprint</button>
             <p class="form-note">By requesting the Blueprint, you consent to receive the requested educational material by email. Weekly Market Intelligence is sent only if you select the optional checkbox.</p>
