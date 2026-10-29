@@ -26,3 +26,25 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Investor Readiness editorial release: legibility and restored sections */
+.readiness-form .readiness-group > p,
+.readiness-form .readiness-group legend,
+.readiness-form .readiness-submit-wrap > p,
+.readiness-form .readiness-identity p,
+.readiness-reference p,
+.readiness-reference li,
+.readiness-final p,
+.readiness-final h3 { color: #17243b; }
+.readiness-hero .readiness-lede,
+.readiness-hero .readiness-note { color: #ffffff; }
+.readiness-hero .eyebrow { color: #ffffff; }
+.readiness-final { border-left: 4px solid #8b713d; background: #f7f4ee; padding: clamp(1.1rem,3vw,1.8rem); margin: 2rem 0 1.25rem; }
+.readiness-final .readiness-final-question { font-family: Georgia, serif; font-size: clamp(1.2rem,2.3vw,1.55rem); line-height: 1.5; font-weight: 600; margin: .6rem 0; }
+.readiness-clarifier { font-size: .95rem; }
+.readiness-reference .container { max-width: 1040px; }
+.readiness-section-intro { max-width: 76ch; }
+.readiness-reference-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .75rem 2rem; list-style: none; padding: 0; margin: 1.5rem 0 0; }
+.readiness-reference-list li { position: relative; padding: .75rem .75rem .75rem 1.8rem; border-bottom: 1px solid #d9d3c8; line-height: 1.55; }
+.readiness-reference-list li::before { content: '□'; position: absolute; left: 0; color: #695324; font-weight: 700; }
+@media (max-width: 720px) { .readiness-reference-list { grid-template-columns: 1fr; } }
