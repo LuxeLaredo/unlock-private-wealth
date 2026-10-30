@@ -1,0 +1,249 @@
+/* Denali Investor Readiness — cohesive finishing pass, Oct. 29, 2026
+   This file loads AFTER the existing readiness/styles.css. Unlike prior patches,
+   it is a separate, replaceable layer. All functionality stays unchanged.
+   Matches the approved Denali palette and institutional visual guide. */
+
+/* Give the assessment a warm paper canvas, not an uninterrupted white field. */
+.readiness-assessment {
+  background: #fffdf8;
+  padding: clamp(3.8rem, 6vw, 5.1rem) 0 clamp(4.4rem, 7vw, 5.6rem);
+}
+.readiness-shell { max-width: 1060px; }
+
+/* Align the form with its introduction; avoid a thin isolated form column. */
+.readiness-intro {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: end;
+  margin-bottom: 2.5rem;
+}
+.readiness-intro h2 {
+  max-width: 20ch;
+  font-size: clamp(2.1rem, 3.1vw, 2.75rem);
+  line-height: 1.1;
+}
+.readiness-intro > p {
+  color: #404956;
+  max-width: 45ch;
+  font-size: 1.06rem;
+  line-height: 1.7;
+}
+.readiness-form {
+  max-width: 960px;
+  margin: 0;
+  gap: 1.05rem;
+}
+
+/* Warm cream answer sections with a visible — still restrained — tonal boundary. */
+.readiness-form .readiness-group:not(.readiness-identity):not(.readiness-group--gate) {
+  background: #f2eee6;
+  border: 1px solid #d8d0c4;
+  padding: 1.65rem 1.65rem 1.7rem;
+}
+.readiness-form .readiness-group--gate {
+  background: #ebe4d9;
+  border: 1px solid #cfc4b4;
+  border-left: 4px solid #927747;
+  padding: 1.65rem 1.65rem 1.7rem;
+  margin-top: 0;
+}
+.readiness-form .readiness-identity {
+  background: #ffffff;
+  border: 1px solid #d8d0c4;
+  border-left: 4px solid #111627;
+  padding: 1.7rem;
+  margin-bottom: .45rem;
+}
+.readiness-form .readiness-group legend {
+  padding: 0 .6rem;
+  font-size: 1.24rem;
+  color: #111627;
+  line-height: 1.27;
+}
+.readiness-form .readiness-group > p {
+  max-width: 72ch;
+  margin: .55rem 0 1.05rem;
+  color: #293442;
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+.readiness-form .readiness-group .readiness-clarifier {
+  color: #424b56;
+  font-size: .92rem;
+  max-width: 68ch;
+}
+.readiness-form .choice-row,
+.readiness-form .objective-grid { gap: .75rem; }
+.readiness-form .choice-row label,
+.readiness-form .objective-grid label {
+  min-height: 52px;
+  padding: .75rem .95rem;
+  border: 1px solid #c8c0b5;
+  background: #ffffff;
+  color: #172235;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.readiness-form .choice-row label:has(input:checked),
+.readiness-form .objective-grid label:has(input:checked) {
+  background: #fdfbf5;
+  border-color: #775d24;
+  box-shadow: inset 0 0 0 1px #775d24;
+}
+.readiness-form .choice-row label:focus-within,
+.readiness-form .objective-grid label:focus-within {
+  outline: 2px solid #775d24;
+  outline-offset: 2px;
+}
+.readiness-form .field label { font-size: .88rem; }
+.readiness-form .field input { min-height: 50px; }
+
+/* Closing principle should be a conclusion, not another survey question. */
+.readiness-form .readiness-final {
+  margin: 2.2rem 0 .5rem;
+  padding: clamp(1.6rem, 3vw, 2.15rem);
+  background: #eee7dc;
+  border-left: 3px solid #927747;
+}
+.readiness-form .readiness-final .eyebrow {
+  color: #775d24;
+  font-size: .77rem;
+}
+.readiness-form .readiness-final .readiness-final-question {
+  max-width: 52ch;
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  line-height: 1.4;
+}
+.readiness-form .readiness-final > p:last-child {
+  color: #3d4751;
+  max-width: 75ch;
+  line-height: 1.65;
+}
+.readiness-form .readiness-submit-wrap {
+  margin-top: .35rem;
+  padding: 1.7rem;
+  background: #f1ece3;
+  border: 1px solid #d7cdbf;
+}
+.readiness-form .readiness-submit {
+  max-width: 340px;
+  background: #111627;
+  border: 1px solid #111627;
+  color: #ffffff;
+  font-size: .98rem;
+  min-height: 52px;
+  transition: background .15s ease;
+}
+.readiness-form .readiness-submit:hover {
+  background: #1d263b;
+  border-color: #1d263b;
+  transform: none;
+}
+.readiness-form .readiness-submit-wrap > p {
+  color: #3e4650;
+  font-size: .9rem;
+}
+
+/* Preserve the clean editorial reference treatment, at a readable scale. */
+.readiness-sponsor-grid .sponsor-questions li {
+  font-size: 1.02rem;
+  padding-top: 1.05rem;
+  padding-bottom: 1.05rem;
+  line-height: 1.55;
+}
+.readiness-sponsor-grid .sponsor-questions li::before { top: 1.05rem; }
+.readiness-tax-questions { background: #f7f5ef; }
+.readiness-reference .readiness-reference-list li {
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+.readiness-reference.section--paper { background: #eee9e0; }
+.readiness-reference h2 { max-width: 26ch; }
+
+@media (max-width: 760px) {
+  .readiness-intro { grid-template-columns: 1fr; gap: 1.05rem; }
+  .readiness-intro h2 { max-width: 25ch; }
+  .readiness-form { max-width: 100%; }
+  .readiness-form .readiness-group:not(.readiness-identity):not(.readiness-group--gate),
+  .readiness-form .readiness-group--gate,
+  .readiness-form .readiness-identity { padding: 1.25rem; }
+  .readiness-form .readiness-group legend { font-size: 1.16rem; }
+  .readiness-form .readiness-submit { max-width: 100%; }
+}
+@media (max-width: 620px) {
+  .readiness-assessment { padding: 3.2rem 0 3.9rem; }
+  .readiness-form .readiness-group > p { font-size: .98rem; }
+  .readiness-form .readiness-final { padding: 1.4rem; }
+  .readiness-form .choice-row label,
+  .readiness-form .objective-grid label { font-size: 1rem; }
+}
+
+
+/* Final pre-launch editorial QA — direct contrast and educational handoff.
+   The actual panels are #f2eee6 / #ebe4d9 / #eee7dc, not pure white.
+   These text colors are chosen against the darkest relevant panel. */
+.readiness-assessment .readiness-intro > p,
+.readiness-form .readiness-group > p,
+.readiness-form .readiness-group .readiness-clarifier,
+.readiness-form .readiness-identity p,
+.readiness-form .readiness-submit-wrap > p,
+.readiness-form .readiness-final > p:last-child,
+.readiness-result > p,
+.readiness-result .result-details,
+.readiness-result .result-disclaimer,
+.readiness-reference .readiness-section-intro,
+.readiness-reference p,
+.readiness-reference .readiness-reference-list li {
+  color: #293442;
+}
+.readiness-assessment .eyebrow,
+.readiness-form .readiness-final .eyebrow,
+.readiness-reference .eyebrow,
+.readiness-result .eyebrow {
+  color: #544216;
+}
+.readiness-form .field label,
+.readiness-form .readiness-group legend { color: #111627; }
+.readiness-form .choice-row label,
+.readiness-form .objective-grid label { color: #17243b; }
+/* Preserve light text on the navy sections. */
+.readiness-hero .eyebrow { color: #d5c39c; }
+.readiness-sponsor-grid .sponsor-questions li { color: #e2e6ec; }
+.readiness-result .readiness-next-reading {
+  margin-top: 1.6rem;
+  padding: 1.35rem 1.5rem;
+  background: #f2eee6;
+  border-left: 3px solid #775d24;
+}
+.readiness-result .readiness-next-reading h3 {
+  color: #111627;
+  font-size: 1.26rem;
+  line-height: 1.3;
+}
+.readiness-result .readiness-next-reading p {
+  color: #293442;
+  max-width: 66ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: .5rem 0 1rem;
+}
+.readiness-next-reading-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem 1.4rem;
+}
+.readiness-next-reading-links a {
+  color: #17243b;
+  font-size: 1rem;
+  font-weight: 650;
+  text-underline-offset: 4px;
+}
+.readiness-next-reading-links a:hover { color: #544216; }
+.readiness-next-reading-links a:focus-visible {
+  outline: 2px solid #544216;
+  outline-offset: 3px;
+}
+@media (max-width: 620px) {
+  .readiness-result .readiness-next-reading { padding: 1.2rem; }
+  .readiness-next-reading-links { display: grid; gap: .65rem; }
+}

@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Investor Readiness Checklist | Unlock Private Wealth</title>
+  <title>Investor Readiness | Unlock Private Wealth</title>
   <meta name="description" content="A practical self-assessment from Denali Equity Investments to help private real estate investors think through liquidity, time horizon, risk, tax considerations, and fit before evaluating a deal.">
   <meta name="theme-color" content="#111627">
   <link rel="canonical" href="https://unlockmyprivatewealth.com/readiness/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Investor Readiness Checklist | Unlock Private Wealth">
+  <meta property="og:title" content="Investor Readiness | Unlock Private Wealth">
   <meta property="og:description" content="Clarify your liquidity, time horizon, risk tolerance, and decision readiness before evaluating a private real estate opportunity.">
   <meta property="og:url" content="https://unlockmyprivatewealth.com/readiness/">
   <link rel="stylesheet" href="../assets/styles.css">
   <link rel="stylesheet" href="../assets/security.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="finish.css">
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
@@ -32,26 +33,26 @@
   <main id="main">
     <section class="readiness-hero">
       <div class="container readiness-hero-inner">
-        <p class="eyebrow">Investor Readiness Checklist</p>
+        <p class="eyebrow">Investor Readiness</p>
         <h1>Clarity before commitment.</h1>
         <p class="readiness-lede">
           Before evaluating a private real estate opportunity, make sure the investment structure fits your liquidity, time horizon, risk tolerance, tax picture, and expectations.
         </p>
         <p class="readiness-note">
-          This checklist is for education and conversation planning. It does not verify accreditation, determine investment suitability, or recommend an investment. Any actual investment requires separate review and formal offering documents.
+          This self-assessment is for education and conversation planning. It does not verify accreditation, determine investment suitability, or recommend an investment. Any actual investment requires separate review and formal offering documents.
         </p>
       </div>
     </section>
 
-    <section class="section section--white">
+    <section class="section section--white readiness-assessment">
       <div class="container readiness-shell">
         <div class="readiness-intro">
           <div>
             <p class="eyebrow">Before a Strategy Call</p>
-            <h2>Answer the questions you would want answered for yourself.</h2>
+            <h2>Start with your own circumstances.</h2>
           </div>
           <p>
-            Denali's view is simple: the right next step depends on whether the structure makes sense for you before a specific deal or return projection enters the conversation.
+            Before evaluating a specific deal or projected return, consider the commitments, risks, and tradeoffs that matter to you. The sponsor, tax, and investment-evaluation questions below the form complete this review.
           </p>
         </div>
 
@@ -63,7 +64,7 @@
 
           <fieldset class="readiness-group readiness-identity">
             <legend>Your information</legend>
-            <p>If you came here from the Blueprint, these fields will be filled automatically. We use them only to connect this readiness submission to your existing Denali contact record.</p>
+            <p>Your information connects these responses to your Denali contact record. If you arrived from the Blueprint, some fields may already be filled in.</p>
             <div class="field-row">
               <div class="field">
                 <label for="readiness-first-name">First name</label>
@@ -77,6 +78,11 @@
             <div class="field">
               <label for="readiness-email">Email address</label>
               <input id="readiness-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254">
+            </div>
+            <div class="field">
+              <label for="readiness-phone">Phone number (optional)</label>
+              <input id="readiness-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="32" placeholder="(213) 555-0100">
+              <p class="form-note">If provided, Denali may call about your inquiry. This is not consent to receive marketing texts.</p>
             </div>
           </fieldset>
           <fieldset class="readiness-group">
@@ -157,7 +163,7 @@
           <fieldset class="readiness-group readiness-group--gate">
             <legend>9. Capacity for loss</legend>
             <p>Could you absorb a partial or total loss of invested capital without jeopardizing essential financial obligations?</p>
-            <p class="readiness-clarifier">This question helps identify topics to discuss; your response is not a legal suitability determination.</p>
+            <p class="readiness-clarifier">Your answer identifies a topic for further discussion. It does not establish whether an investment is suitable for you.</p>
             <div class="choice-row choice-row--three">
               <label><input type="radio" name="loss_capacity" value="yes" required> <span>Yes</span></label>
               <label><input type="radio" name="loss_capacity" value="no"> <span>No</span></label>
@@ -177,7 +183,7 @@
               <div class="cf-turnstile" data-sitekey="0x4AAAAAAFqotZP8ksY52192" data-action="readiness_submit" data-theme="light" data-size="flexible" data-appearance="interaction-only"></div>
             </div>
             <button class="primary-button readiness-submit" type="submit">Review My Readiness</button>
-            <p>There is no numerical score. Your answers simply determine which next step is most useful.</p>
+            <p>There is no score. Your responses help identify a useful next step.</p>
             <p id="readiness-status" class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
           </div>
         </form>
@@ -187,6 +193,15 @@
           <h2 id="result-title"></h2>
           <p id="result-body"></p>
           <div id="result-details" class="result-details"></div>
+          <div class="readiness-next-reading" aria-labelledby="readiness-next-reading-heading">
+            <h3 id="readiness-next-reading-heading">Continue the review.</h3>
+            <p>Your responses are a starting point. Before considering a specific investment, review the questions and principles below.</p>
+            <nav class="readiness-next-reading-links" aria-label="Readiness topics to review">
+              <a href="#readiness-sponsor-questions">12 questions for any sponsor</a>
+              <a href="#readiness-tax-questions">8 tax questions</a>
+              <a href="#readiness-denali-view">8 investment criteria</a>
+            </nav>
+          </div>
           <div class="result-actions">
             <a id="result-primary" class="delivery-button" href="#"></a>
             <a class="final-link" href="../blueprint/">Revisit the Blueprint</a>
@@ -196,7 +211,7 @@
       </div>
     </section>
 
-    <section class="section section--dark">
+    <section id="readiness-sponsor-questions" class="section section--dark">
       <div class="container readiness-sponsor-grid">
         <div>
           <p class="eyebrow eyebrow--light">Questions for any sponsor</p>
@@ -218,7 +233,7 @@
         </ul>
       </div>
     </section>
-    <section class="section section--white readiness-reference" aria-labelledby="tax-questions-heading">
+    <section id="readiness-tax-questions" class="section section--white readiness-reference readiness-tax-questions" aria-labelledby="tax-questions-heading">
       <div class="container">
         <p class="eyebrow">Tax questions to review</p>
         <h2 id="tax-questions-heading">Understand the tax picture before committing capital.</h2>
@@ -236,7 +251,7 @@
       </div>
     </section>
 
-    <section class="section section--paper readiness-reference" aria-labelledby="denali-view-heading">
+    <section id="readiness-denali-view" class="section section--paper readiness-reference" aria-labelledby="denali-view-heading">
       <div class="container">
         <p class="eyebrow">Denali’s View</p>
         <h2 id="denali-view-heading">Discipline before excitement.</h2>

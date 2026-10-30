@@ -63,6 +63,7 @@
       first_name: String(data.get("first_name") || "").trim(),
       last_name: String(data.get("last_name") || "").trim(),
       email: String(data.get("email") || "").trim().toLowerCase(),
+      phone: String(data.get("phone") || "").trim(),
       source_category: sourceCategory(),
       source_detail: sourceDetail(),
       landing_url: window.location.href,
@@ -99,6 +100,7 @@
         first_name: payload.first_name,
         last_name: payload.last_name,
         email: payload.email,
+        phone: payload.phone,
         source_category: payload.source_category,
         source_detail: payload.source_detail
       }));

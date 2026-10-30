@@ -36,9 +36,9 @@
 .readiness-reference li,
 .readiness-final p,
 .readiness-final h3 { color: #17243b; }
-.readiness-hero .readiness-lede,
-.readiness-hero .readiness-note { color: #ffffff; }
-.readiness-hero .eyebrow { color: #ffffff; }
+.readiness-hero .readiness-lede { color: #354253; }
+.readiness-hero .readiness-note { color: #455262; }
+.readiness-hero .eyebrow { color: #775d24; }
 .readiness-final { border-left: 4px solid #8b713d; background: #f7f4ee; padding: clamp(1.1rem,3vw,1.8rem); margin: 2rem 0 1.25rem; }
 .readiness-final .readiness-final-question { font-family: Georgia, serif; font-size: clamp(1.2rem,2.3vw,1.55rem); line-height: 1.5; font-weight: 600; margin: .6rem 0; }
 .readiness-clarifier { font-size: .95rem; }
@@ -48,3 +48,34 @@
 .readiness-reference-list li { position: relative; padding: .75rem .75rem .75rem 1.8rem; border-bottom: 1px solid #d9d3c8; line-height: 1.55; }
 .readiness-reference-list li::before { content: '□'; position: absolute; left: 0; color: #695324; font-weight: 700; }
 @media (max-width: 720px) { .readiness-reference-list { grid-template-columns: 1fr; } }
+
+
+/* Corrective visual QA: restore desktop rhythm without changing the form fields. */
+.readiness-intro h2 {
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  line-height: 1.12;
+}
+.readiness-shell .readiness-form { gap: .82rem; }
+.readiness-form .readiness-group { padding: 1.2rem 1.4rem; }
+.readiness-form .readiness-group > p { line-height: 1.65; }
+.readiness-form .readiness-submit-wrap > p { color: #273448; }
+.readiness-final .eyebrow { color: #775d24; }
+.readiness-reference .readiness-section-intro { color: #354253; }
+.readiness-reference h2 { max-width: 850px; }
+
+/* Twelve sponsor questions: two readable desktop columns, one on mobile. */
+.section--dark .readiness-sponsor-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+.readiness-sponsor-grid > div { max-width: 800px; }
+.readiness-sponsor-grid .sponsor-questions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .8rem;
+}
+.readiness-sponsor-grid .sponsor-questions li { line-height: 1.55; }
+@media (max-width: 760px) {
+  .readiness-sponsor-grid .sponsor-questions { grid-template-columns: 1fr; }
+  .readiness-form .readiness-group { padding: 1.15rem; }
+  .readiness-intro h2 { font-size: clamp(1.95rem, 7.5vw, 2.5rem); }
+}

@@ -42,6 +42,7 @@
     if (lead.first_name) form.elements.first_name.value = lead.first_name;
     if (lead.last_name) form.elements.last_name.value = lead.last_name;
     if (lead.email) form.elements.email.value = lead.email;
+    if (lead.phone && form.elements.phone) form.elements.phone.value = lead.phone;
   } catch (_) {}
 
   const sourceDetail = () => {
@@ -112,6 +113,7 @@
       first_name: value(data, 'first_name').trim(),
       last_name: value(data, 'last_name').trim(),
       email: value(data, 'email').trim().toLowerCase(),
+      phone: value(data, 'phone').trim(),
       goals: data.getAll('objectives').map(String),
       answers,
       source_category: (params.get('utm_source') || 'unlock_private_wealth').slice(0, 100),
@@ -147,6 +149,7 @@
         first_name: payload.first_name,
         last_name: payload.last_name,
         email: payload.email,
+        phone: payload.phone || (JSON.parse(sessionStorage.getItem('denali_lead') || '{}').phone || ''),
         source_category: payload.source_category,
         source_detail: payload.source_detail
       }));
