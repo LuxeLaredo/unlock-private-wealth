@@ -96,14 +96,24 @@
         throw new Error(result.error || "Request could not be completed.");
       }
 
-      sessionStorage.setItem("denali_lead", JSON.stringify({
+      const lead = {
         first_name: payload.first_name,
         last_name: payload.last_name,
         email: payload.email,
         phone: payload.phone,
         source_category: payload.source_category,
         source_detail: payload.source_detail
-      }));
+      };
+      sessionStorage.setItem("denali_lead", JSON.stringify(lead));
+      // Short-lived backup supports new-tab handoffs. Never put contact data in URLs.
+      try {
+        localStorage.setItem("denali_lead_handoff", JSON.stringify({
+          ...lead,
+          expires_at: Date.now() + 60 * 60 * 1000
+        }));
+      } catch (_) {
+        // Optional fallback: browser storage restrictions should not block delivery.
+      }
 
       setStatus("Your Blueprint is ready. Taking you to the delivery page…", "success");
       window.setTimeout(() => {

@@ -37,8 +37,22 @@
     status.focus({ preventScroll: true });
   };
 
+  // Prefer this tab's session; fall back once to a short-lived cross-tab handoff.
+  // Both storage areas are bound to the same website origin.
+  let lead = {};
   try {
-    const lead = JSON.parse(sessionStorage.getItem('denali_lead') || '{}');
+    lead = JSON.parse(sessionStorage.getItem('denali_lead') || '{}') || {};
+  } catch (_) {}
+  try {
+    const pending = JSON.parse(localStorage.getItem('denali_lead_handoff') || '{}') || {};
+    localStorage.removeItem('denali_lead_handoff');
+    if (!lead.email && pending.email && Number(pending.expires_at) > Date.now()) {
+      const { expires_at, ...rest } = pending;
+      lead = rest;
+      try { sessionStorage.setItem('denali_lead', JSON.stringify(lead)); } catch (_) {}
+    }
+  } catch (_) {}
+  try {
     if (lead.first_name) form.elements.first_name.value = lead.first_name;
     if (lead.last_name) form.elements.last_name.value = lead.last_name;
     if (lead.email) form.elements.email.value = lead.email;
