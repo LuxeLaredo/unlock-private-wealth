@@ -1,0 +1,21 @@
+/* DENALI CALL EXPERIENCE — shared across the three booking pages. */
+.booking-fallback { justify-content:flex-start; padding:.7rem 0 0; margin-top:1rem; }
+.booking-fallback p { font-size:.85rem; line-height:1.6; }
+.booking-fallback a { color:#243b63; font-weight:700; text-underline-offset:3px; }
+.booking-fallback a:hover,.booking-fallback a:focus-visible { color:#111627; }
+.denali-next { background:#f4f0e7; border-top:1px solid #e2d9c8; padding:clamp(3.6rem,7vw,5.8rem) 0; }
+.denali-next-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(280px,.92fr); align-items:center; gap:clamp(1.8rem,5vw,4rem); }
+.denali-next-copy h2 { max-width:18ch; }
+.denali-next-copy > p:last-child { max-width:62ch; color:#344051; line-height:1.75; margin:1rem 0 0; }
+.denali-next-links { display:flex; flex-direction:column; align-items:stretch; gap:.8rem; }
+.denali-next-links a { text-decoration:none; font-weight:750; line-height:1.4; padding:.9rem 1.15rem; border:1px solid #111627; border-radius:2px; min-height:51px; display:flex; align-items:center; justify-content:center; text-align:center; }
+.denali-next-primary { background:#111627; color:#fff; }
+.denali-next-primary:hover,.denali-next-primary:focus-visible { background:#fff; color:#111627; }
+.denali-next-secondary { color:#111627; background:transparent; }
+.denali-next-secondary:hover,.denali-next-secondary:focus-visible { background:#111627; color:#fff; }
+.denali-next-tertiary { background:transparent; color:#17243b; text-decoration:underline !important; text-underline-offset:4px; border-color:transparent !important; font-weight:750; }
+.denali-next-tertiary:hover,.denali-next-tertiary:focus-visible { color:#544216; text-decoration-thickness:2px; }
+.call-prep-link { display:inline-block; padding:.4rem 0; font-weight:700; font-size:1.03rem; text-decoration-thickness:2px; text-underline-offset:5px; }
+@media (max-width:820px) { .denali-next-grid { grid-template-columns:1fr; } }
+/* Blueprint cover fix: the decorative stacked-paper pseudo-elements must not obscure the CTA. */
+.book-stage > #readiness-link-cover { position:relative; z-index:4; width:100%; margin-top:1.3rem; display:flex; justify-content:center; text-align:center; }

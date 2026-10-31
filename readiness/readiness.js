@@ -17,8 +17,8 @@
   const button = form.querySelector("button[type='submit']");
 
   const strategyCallUrl = '../strategy-call/';
-  const introductionCallUrl = 'https://cal.com/toddwmichael/20-minute-investor-introduction-call';
-  const getAcquaintedCallUrl = 'https://cal.com/toddwmichael/get-acquainted-call';
+  const introductionCallUrl = '../introduction-call/';
+  const getAcquaintedCallUrl = '../get-acquainted-call/';
   const blueprintUrl = '../blueprint/';
   const denaliResourcesUrl = 'https://denaliequityinvestments.com/resources.html';
   const params = new URLSearchParams(window.location.search);
@@ -85,15 +85,6 @@
       sessionStorage.setItem('denali_readiness_completed_at', new Date().toISOString());
     } catch (_) {}
 
-    // Keep contact data out of Cal.com URL parameters. Pass only source tags.
-    const calendarLink = (baseUrl) => {
-      const next = new URL(baseUrl);
-      for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
-        const value = params.get(key);
-        if (value) next.searchParams.set(key, value.slice(0, 180));
-      }
-      return next.toString();
-    };
     const action = (node, label, href) => {
       node.textContent = label;
       node.href = href;
@@ -107,12 +98,12 @@
       body.textContent = 'Your responses suggest that you are comfortable exploring several important considerations of private real estate, including long-term ownership, limited liquidity, and investment risk.';
       details.textContent = 'A Private Investor Strategy Call with Todd W. Michael is an opportunity to discuss your objectives, learn how Denali evaluates opportunities, and determine what questions deserve further consideration.';
       action(primary, 'Schedule a Strategy Call', preserveQuery(strategyCallUrl, { readiness_route: route }));
-      action(secondary, 'Start with a 20-Minute Introduction', calendarLink(introductionCallUrl));
+      action(secondary, 'Start with a 20-Minute Introduction', preserveQuery(introductionCallUrl, { readiness_route: route }));
     } else if (route === 'manual_review') {
       title.textContent = 'Some questions are better explored together.';
       body.textContent = 'Your responses suggest there may be questions worth exploring, or circumstances you would prefer to discuss privately. That is a perfectly reasonable place to begin.';
       details.textContent = 'We invite you to schedule a brief conversation with Todd W. Michael to get acquainted, discuss what is on your mind, and learn more about Denali’s approach. You are equally welcome to continue exploring the educational resources at your own pace. No preparation or investment decision is expected.';
-      action(primary, 'Schedule a 20-Minute Introduction Call', calendarLink(introductionCallUrl));
+      action(primary, 'Schedule a 20-Minute Introduction Call', preserveQuery(introductionCallUrl, { readiness_route: route }));
       action(secondary, 'Explore Denali Resources', denaliResourcesUrl);
       action(tertiary, 'Revisit the Private Wealth Blueprint', preserveQuery(blueprintUrl, { readiness_route: route }));
     } else {
@@ -120,7 +111,7 @@
       body.textContent = 'Your responses highlight considerations that deserve attention before making a commitment to private real estate. These may include liquidity needs, the potential for investment loss, or how private investments fit your broader financial circumstances.';
       details.textContent = 'There is no reason to rush. Continue learning, ask questions, and make decisions on your own timeline. If you would simply like to meet Todd W. Michael, learn about Denali, or establish a connection for the future, you are always welcome. A conversation is educational and does not change the risks of investing.';
       action(primary, 'Revisit the Private Wealth Blueprint', preserveQuery(blueprintUrl, { readiness_route: route }));
-      action(secondary, 'Schedule a 15-Minute Get-Acquainted Call', calendarLink(getAcquaintedCallUrl));
+      action(secondary, 'Schedule a 15-Minute Get-Acquainted Call', preserveQuery(getAcquaintedCallUrl, { readiness_route: route }));
     }
 
     result.hidden = false;
