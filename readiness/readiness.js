@@ -12,10 +12,15 @@
   const body = document.querySelector('#result-body');
   const details = document.querySelector('#result-details');
   const primary = document.querySelector('#result-primary');
+  const secondary = document.querySelector('#result-secondary');
+  const tertiary = document.querySelector('#result-tertiary');
   const button = form.querySelector("button[type='submit']");
 
   const strategyCallUrl = '../strategy-call/';
+  const introductionCallUrl = 'https://cal.com/toddwmichael/20-minute-investor-introduction-call';
+  const getAcquaintedCallUrl = 'https://cal.com/toddwmichael/get-acquainted-call';
   const blueprintUrl = '../blueprint/';
+  const denaliResourcesUrl = 'https://denaliequityinvestments.com/resources.html';
   const params = new URLSearchParams(window.location.search);
 
   const preserveQuery = (url, additions = {}) => {
@@ -72,28 +77,50 @@
     return (parts.join(';') || 'investor_readiness').slice(0, 1000);
   };
 
+  // Route is returned by the existing Supabase Edge Function. Never re-score on the client.
+  // These are relationship and educational starting points, not pass/fail ratings.
   const renderRoute = (route) => {
-    sessionStorage.setItem('denali_readiness_route', route);
-    sessionStorage.setItem('denali_readiness_completed_at', new Date().toISOString());
+    try {
+      sessionStorage.setItem('denali_readiness_route', route);
+      sessionStorage.setItem('denali_readiness_completed_at', new Date().toISOString());
+    } catch (_) {}
+
+    // Keep contact data out of Cal.com URL parameters. Pass only source tags.
+    const calendarLink = (baseUrl) => {
+      const next = new URL(baseUrl);
+      for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+        const value = params.get(key);
+        if (value) next.searchParams.set(key, value.slice(0, 180));
+      }
+      return next.toString();
+    };
+    const action = (node, label, href) => {
+      node.textContent = label;
+      node.href = href;
+      node.hidden = false;
+    };
+    secondary.hidden = true;
+    tertiary.hidden = true;
 
     if (route === 'strategy_call_appropriate') {
-      title.textContent = 'Your responses suggest that a focused Strategy Call may be a useful next step.';
-      body.textContent = 'The purpose of the call is to work through your questions, timeline, risk concerns, and what you would need to understand before evaluating a specific opportunity.';
-      details.innerHTML = '<p><strong>Next:</strong> Schedule a private conversation with Todd W. Michael. This readiness result is educational and does not determine suitability, accreditation, or investment access.</p>';
-      primary.textContent = 'Schedule a Strategy Call';
-      primary.href = preserveQuery(strategyCallUrl, { readiness_route: route });
+      title.textContent = 'A conversation could be a useful next step.';
+      body.textContent = 'Your responses suggest that you are comfortable exploring several important considerations of private real estate, including long-term ownership, limited liquidity, and investment risk.';
+      details.textContent = 'A Private Investor Strategy Call with Todd W. Michael is an opportunity to discuss your objectives, learn how Denali evaluates opportunities, and determine what questions deserve further consideration.';
+      action(primary, 'Schedule a Strategy Call', preserveQuery(strategyCallUrl, { readiness_route: route }));
+      action(secondary, 'Start with a 20-Minute Introduction', calendarLink(introductionCallUrl));
     } else if (route === 'manual_review') {
-      title.textContent = 'You do not need to have every answer today.';
-      body.textContent = 'Continue reviewing the Blueprint, and schedule a conversation when you are ready to work through your questions.';
-      details.innerHTML = '<p>One or more responses call for additional context rather than an automated conclusion. If you selected “Prefer to discuss privately,” that response is intentionally reserved for a confidential conversation.</p>';
-      primary.textContent = 'Review Denali Resources';
-      primary.href = 'https://denaliequityinvestments.com/resources.html';
+      title.textContent = 'Some questions are better explored together.';
+      body.textContent = 'Your responses suggest there may be questions worth exploring, or circumstances you would prefer to discuss privately. That is a perfectly reasonable place to begin.';
+      details.textContent = 'We invite you to schedule a brief conversation with Todd W. Michael to get acquainted, discuss what is on your mind, and learn more about Denali’s approach. You are equally welcome to continue exploring the educational resources at your own pace. No preparation or investment decision is expected.';
+      action(primary, 'Schedule a 20-Minute Introduction Call', calendarLink(introductionCallUrl));
+      action(secondary, 'Explore Denali Resources', denaliResourcesUrl);
+      action(tertiary, 'Revisit the Private Wealth Blueprint', preserveQuery(blueprintUrl, { readiness_route: route }));
     } else {
-      title.textContent = 'Based on your responses, private real estate may not be appropriate for you at this time.';
-      body.textContent = 'That is not a permanent judgment. It means education, liquidity planning, or a clearer understanding of illiquidity and loss of capital should come before a Strategy Call.';
-      details.innerHTML = '<p>Revisit the Blueprint and discuss any financial or tax questions with the appropriate professional before considering a specific private investment.</p>';
-      primary.textContent = 'Revisit the Blueprint';
-      primary.href = preserveQuery(blueprintUrl, { readiness_route: route });
+      title.textContent = 'Your financial well-being comes first.';
+      body.textContent = 'Your responses highlight considerations that deserve attention before making a commitment to private real estate. These may include liquidity needs, the potential for investment loss, or how private investments fit your broader financial circumstances.';
+      details.textContent = 'There is no reason to rush. Continue learning, ask questions, and make decisions on your own timeline. If you would simply like to meet Todd W. Michael, learn about Denali, or establish a connection for the future, you are always welcome. A conversation is educational and does not change the risks of investing.';
+      action(primary, 'Revisit the Private Wealth Blueprint', preserveQuery(blueprintUrl, { readiness_route: route }));
+      action(secondary, 'Schedule a 15-Minute Get-Acquainted Call', calendarLink(getAcquaintedCallUrl));
     }
 
     result.hidden = false;

@@ -37,6 +37,7 @@
 
         <div class="book-stage" aria-label="The Private Wealth Blueprint cover">
           <img class="book-cover" src="../assets/private-wealth-blueprint-cover.png" alt="The Private Wealth Blueprint by Todd W. Michael, Denali Equity Investments">
+          <a id="readiness-link-cover" class="delivery-button" href="../readiness/" style="display:flex;justify-content:center;text-align:center;margin-top:1.3rem;">Begin Investor Readiness</a>
         </div>
       </div>
     </section>
@@ -59,7 +60,7 @@
       <div class="container">
         <p class="eyebrow eyebrow--light">The Next Step</p>
         <h2>Put the Blueprint to work with Investor Readiness.</h2>
-        <p>Investor Readiness helps you consider liquidity, time horizon, risk tolerance, tax considerations, and the questions worth answering before deciding whether a Strategy Call makes sense.</p>
+        <p>Investor Readiness helps you consider liquidity, time horizon, risk tolerance, tax considerations, and the questions worth exploring before choosing your next step.</p>
         <div class="delivery-actions">
           <a id="readiness-link" class="delivery-button" href="../readiness/">Begin Investor Readiness</a>
         </div>
@@ -76,8 +77,10 @@
   </footer>
   <script>
     (() => {
-      const link = document.querySelector('#readiness-link');
-      if (link && window.location.search) link.href = `../readiness/${window.location.search}`;
+      for (const id of ['readiness-link', 'readiness-link-cover']) {
+        const link = document.getElementById(id);
+        if (link && window.location.search) link.href = `../readiness/${window.location.search}`;
+      }
     })();
   </script>
 </body>

@@ -15,6 +15,30 @@
   <link rel="stylesheet" href="../assets/security.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="finish.css">
+
+  <style>
+    /* Relationship-first outcome actions; no changes to the assessment form. */
+    .readiness-result .result-actions { align-items: center; }
+    .readiness-result .result-actions a[hidden] { display: none !important; }
+    .readiness-result .result-secondary-action {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px; padding: .78rem 1.15rem;
+      border: 2px solid #111627; background: transparent; color: #111627;
+      font-weight: 700; text-decoration: none; border-radius: 3px;
+    }
+    .readiness-result .result-secondary-action:hover,
+    .readiness-result .result-secondary-action:focus-visible {
+      background: #111627; color: #fff; outline-offset: 3px;
+    }
+    .readiness-result .result-tertiary-action {
+      color: #17243b; font-weight: 650; text-underline-offset: 4px;
+      padding: .65rem .2rem;
+    }
+    .readiness-result .result-tertiary-action:focus-visible { outline: 2px solid #544216; outline-offset: 4px; }
+    @media (max-width: 760px) {
+      .readiness-result .result-actions a { width: 100%; text-align: center; }
+    }
+  </style>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
@@ -48,7 +72,7 @@
       <div class="container readiness-shell">
         <div class="readiness-intro">
           <div>
-            <p class="eyebrow">Before a Strategy Call</p>
+            <p class="eyebrow">Start Your Conversation</p>
             <h2>Start with your own circumstances.</h2>
           </div>
           <p>
@@ -204,7 +228,8 @@
           </div>
           <div class="result-actions">
             <a id="result-primary" class="delivery-button" href="#"></a>
-            <a class="final-link" href="../blueprint/">Revisit the Blueprint</a>
+            <a id="result-secondary" class="result-secondary-action" href="#" hidden></a>
+            <a id="result-tertiary" class="result-tertiary-action" href="#" hidden></a>
           </div>
           <p class="result-disclaimer">This result is educational only. It is not a determination that an investment is suitable for you, that you are accredited, or that any specific investment should be made.</p>
         </section>
