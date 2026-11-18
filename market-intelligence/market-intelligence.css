@@ -1,0 +1,15 @@
+/* Newsletter-specific additions only; preserve the shared Denali visual system. */
+.intelligence-grid { align-items: start; }
+.intelligence-card-heading { margin-bottom: 1.3rem; padding-bottom: 1.25rem; border-bottom: 1px solid #e9e4da; }
+.intelligence-card-heading h2 { font-size: clamp(1.35rem, 2.3vw, 1.65rem); }
+.intelligence-card-heading p:last-child { color: #3d434e; font-size: .93rem; margin: .55rem 0 0; }
+.intelligence-eyebrow { color: #5a4618; font-size: .73rem; }
+.intelligence-caveat { max-width: 640px; color: #3d434e; font-size: .85rem; margin-top: 1.9rem; }
+.intelligence-followup-inner { max-width: 860px; }
+.intelligence-followup-inner p:not(.eyebrow) { max-width: 750px; color: #3d434e; }
+.intelligence-link { display: inline-block; margin-top: 1rem; color: #1d263b; font-weight: 750; text-underline-offset: .2em; }
+.intelligence-link:focus-visible, .intelligence-card .form-note a:focus-visible { outline: 3px solid #775d24; outline-offset: 3px; }
+.intelligence-card .checkbox-wrap { font-size: .87rem; color: #29313a; }
+.intelligence-card .form-note { font-size: .81rem; color: #3d434e; }
+.intelligence-card .form-note a { text-decoration: underline; text-underline-offset: .16em; }
+@media (max-width: 900px) { .intelligence-grid { gap: 2rem; } }
