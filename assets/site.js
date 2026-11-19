@@ -116,6 +116,7 @@
       }
 
       setStatus("Your Blueprint is ready. Taking you to the delivery page…", "success");
+      window.DenaliAnalytics?.track('blueprint_request_succeeded', { form_id: 'blueprint' });
       window.setTimeout(() => {
         const query = window.location.search || "";
         window.location.assign(`${CONFIG.successPath}${query}`);

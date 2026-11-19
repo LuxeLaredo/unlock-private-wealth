@@ -82,6 +82,7 @@
       form.reset();
       window.turnstile?.reset?.();
       setStatus('Thank you. Your subscription has been recorded.', 'success');
+      window.DenaliAnalytics?.track('market_intelligence_subscription_succeeded', { form_id: 'weekly_market_intelligence' });
     } catch (error) {
       console.error('Newsletter subscription failed', error);
       setStatus(error?.message || 'We could not save your subscription. Please try again.');

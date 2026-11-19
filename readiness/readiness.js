@@ -187,6 +187,7 @@
       }));
 
       setStatus('Readiness saved.', 'success');
+      window.DenaliAnalytics?.track('readiness_submitted', { form_id: 'investor_readiness' });
       renderRoute(responseBody.route_outcome);
     } catch (error) {
       console.error('Readiness submission failed', error);
